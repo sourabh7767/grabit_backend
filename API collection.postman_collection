@@ -1,0 +1,887 @@
+{
+	"info": {
+		"_postman_id": "3aaf6439-1063-496c-b5b4-3aa3367d3a23",
+		"name": "Grabit Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login?phone=01097268352&password=12345678",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "01097268352"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout?token=",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/auth?token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cities/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cities",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Regions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/regions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"regions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/categories?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "category/{category_id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/category/10?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"10"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store/{id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/store/1?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"store",
+						"1"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store/sub-categories/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/store/sub-categories?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&store_id=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"store",
+						"sub-categories"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "store_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store/sub-categories/{sub_category_id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/store/sub-categories/2?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&store_id=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"store",
+						"sub-categories",
+						"2"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "store_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/add?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2&item_id=22&quantity=3&price=21",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						"add"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user id"
+						},
+						{
+							"key": "item_id",
+							"value": "22"
+						},
+						{
+							"key": "quantity",
+							"value": "3"
+						},
+						{
+							"key": "price",
+							"value": "21",
+							"description": "item price"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart/remove",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/remove?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2&item_id=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						"remove"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user id"
+						},
+						{
+							"key": "item_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart/clear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/clear?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						"clear"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user ID "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cart/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/cart/update?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2&item_id=25&quantity=55&price=30",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cart",
+						"update"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user ID "
+						},
+						{
+							"key": "item_id",
+							"value": "25"
+						},
+						{
+							"key": "quantity",
+							"value": "55"
+						},
+						{
+							"key": "price",
+							"value": "30",
+							"description": "item price"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order/cancel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/order/cancel?token&order_id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"cancel"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": null
+						},
+						{
+							"key": "order_id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/order/add?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2&total=11515&delivery_type=1&generated_order_number=sdf45w45e",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"add"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user id"
+						},
+						{
+							"key": "total",
+							"value": "11515",
+							"description": "total with delivery"
+						},
+						{
+							"key": "delivery_type",
+							"value": "1",
+							"description": "0 => pick up\n1 => delivery"
+						},
+						{
+							"key": "generated_order_number",
+							"value": "sdf45w45e",
+							"description": "create your own_code"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orders/{order_id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/orders/5?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						"5"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user ID "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orderStatus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/order/status?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&order_id=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"status"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "order_id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "orderStatus",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/status?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&order_id=5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"status"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+								},
+								{
+									"key": "order_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 03 Mar 2022 14:10:36 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 03 Mar 2022 14:10:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "laravel_session=ztrqqr2gJKBLA1ayVbme98jtdqwFsn82JVkcwaC1; expires=Thu, 03-Mar-2022 16:10:36 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "0 => canceled\n1 =>waiting\n2 => accepted\n3 => on deliver\n4 => done"
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/orders?token=2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84&id=2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "2f01071b3bab56c6d9db8888125a7c9562135056dbfe277c7001e54320e7cd84"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"description": "user id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateLocation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/update_location?token&region&city&street&building_number&floor&flat&longitude&latitude",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update_location"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": null
+						},
+						{
+							"key": "region",
+							"value": null
+						},
+						{
+							"key": "city",
+							"value": null
+						},
+						{
+							"key": "street",
+							"value": null
+						},
+						{
+							"key": "building_number",
+							"value": null
+						},
+						{
+							"key": "floor",
+							"value": null
+						},
+						{
+							"key": "flat",
+							"value": null
+						},
+						{
+							"key": "longitude",
+							"value": null
+						},
+						{
+							"key": "latitude",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProfile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/update_profile?token&first_name&last_name&password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update_profile"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": null
+						},
+						{
+							"key": "first_name",
+							"value": null
+						},
+						{
+							"key": "last_name",
+							"value": null
+						},
+						{
+							"key": "password",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
