@@ -57,6 +57,8 @@ class StoresController extends Controller
             'en_name' => 'required|min:3|max:255',
             'category' => 'required',
             'location' => 'required|min:5|max:255',
+            'location' => 'required|min:5|max:255',
+            'latitude' => 'required|min:5|max:255',
             'phone' => 'required|min:11|max:13',
             'delivery_price' => 'required',
             'logo' => 'required',
@@ -74,6 +76,8 @@ class StoresController extends Controller
             'ar_name'=>$request->ar_name,
             'category_id' => $request->category,
             'location'=>$request->location,
+            'latitude'=>$request->latitude,
+            'longitude'=>$request->longitude,
             'phone'=>$request->phone,
             'delivery_price'=>$request->delivery_price,
             'region'=>$request->region,
@@ -129,6 +133,8 @@ class StoresController extends Controller
                 'en_name' => 'required|min:3|max:255',
                 'category' => 'required',
                 'location' => 'required|min:5|max:255',
+                'latitude' => 'required|min:5|max:255',
+                'longitude' => 'required|min:5|max:255',
                 'phone' => 'required|min:11|max:13',
                 'delivery_price' => 'required',
                 'region' => 'required',
@@ -151,6 +157,8 @@ class StoresController extends Controller
             $store->ar_name=$request->ar_name;
             $store->category_id=$request->category;
             $store->location=$request->location;
+            $store->latitude=$request->latitude;
+            $store->longitude=$request->longitude;
             $store->phone=$request->phone;
             $store->delivery_price=$request->delivery_price;
             $store->region=$request->region;

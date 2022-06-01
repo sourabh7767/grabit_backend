@@ -4,7 +4,10 @@ namespace App\Http\Controllers\clerk;
 
 use App\Http\Controllers\Controller;
 use App\Models\clerk\Orders;
+use App\Models\user\User;
+use App\Models\user\Items;
 use Illuminate\Http\Request;
+
 
 class OrdersController extends Controller
 {
@@ -15,12 +18,53 @@ class OrdersController extends Controller
      */
     public function index(Request $request)
     {
-        $store_id=$request->session()->get('store_id');
-        $data['title'] = 'Orders';
-        $data['orders'] = Orders::where('store_id',$store_id)->get();
+        $data['orders'] = Orders::get();
+        if($data['orders']){
+            foreach ($data['orders'] as $key => $order) {
+                $user = User::find($order->user_id);
+                $items = json_decode($order->items);
+                $itemNames = [];
+                //echo"<pre>";print_r($items);die;
+                foreach ($items as $key1 => $itm) {
+                    $item = Items::find($itm->item_id);
+                    if($item){
+                        $itemNames[$key1] = $item->en_item_name;    
+                    }
+                }
+                $data['orders'][$key]['item_names'] = implode(', ', $itemNames);
+                $data['orders'][$key]['user_name'] = $user->username;
+            }
+        }
         $data['section'] = "Orders";
-
         return view('clerk/orders/list', $data);
+    }
+
+    public function accept($id){
+        $order = Orders::find($id);
+        $order->status = 2;
+        $order->save();
+        return redirect('clerk/orders')->with('success', 'Order Accepted');        
+    }
+
+    public function cancel($id){
+        $order = Orders::find($id);
+        $order->status = 0;
+        $order->save();
+        return redirect('clerk/orders')->with('success', 'Order Cancelled');        
+    }
+
+    public function readyToDeliver($id){
+        $order = Orders::find($id);
+        $order->status = 3;
+        $order->save();
+        return redirect('clerk/orders')->with('success', 'Order Ready To Deliver');        
+    }
+
+    public function deliver($id){
+        $order = Orders::find($id);
+        $order->status = 4;
+        $order->save();
+        return redirect('clerk/orders')->with('success', 'Order Delivered');        
     }
 
     /**

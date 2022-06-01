@@ -28,7 +28,11 @@
                         <input type="text" name="bundle_name_ar" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
                     </div>         <br>
 
+                    <div class="input-group input-group-outline mb-3 " >
 
+                            <label class="form-label focused">AR Description</label>
+                            <textarea type="text" name="description_ar" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)"></textarea>
+                        </div>
 
 
 
@@ -67,6 +71,11 @@
                             <input type="text" name="bundle_name" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
 
+                        <div class="input-group input-group-outline mb-3 " >
+
+                            <label class="form-label focused">EN Description</label>
+                            <textarea type="text" name="description" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)"></textarea>
+                        </div>
 
                         <div class="form-check form-switch ps-0 is-filled">
                             <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault" value="1" name="status" checked="">

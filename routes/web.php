@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::resource('areas', 'App\Http\Controllers\admin\AreasController');
 
             Route::resource('settings', 'App\Http\Controllers\admin\SettingsController');
-
+            
         });
     });
 });
@@ -79,14 +79,17 @@ Route::group(['prefix' => 'clerk', 'as' => 'clerk.'], function () {
 
 
 
-            Route::resource('orders', 'App\Http\Controllers\clerk\OrdersController');
-            Route::resource('orders/{id}/accept', 'App\Http\Controllers\clerk\OrdersController');
-            Route::resource('orders/{id}/cancel', 'App\Http\Controllers\clerk\OrdersController');
-            Route::resource('orders/{id}/deliver', 'App\Http\Controllers\clerk\OrdersController');
-            Route::resource('orders/{id}/complete', 'App\Http\Controllers\clerk\OrdersController');
+            Route::get('orders', 'App\Http\Controllers\clerk\OrdersController@index');
+            Route::get('orders/accept/{id}', 'App\Http\Controllers\clerk\OrdersController@accept');
+            Route::get('orders/cancel/{id}', 'App\Http\Controllers\clerk\OrdersController@cancel');
+            Route::get('orders/deliver/{id}', 'App\Http\Controllers\clerk\OrdersController@deliver');
+            Route::get('orders/complete/{id}', 'App\Http\Controllers\clerk\OrdersController@readyToDeliver');
 
             Route::resource('clerks', 'App\Http\Controllers\clerk\ClerksController');
             Route::resource('profile', 'App\Http\Controllers\clerk\ProfileController');
+
+            Route::post('/save-token', 'App\Http\Controllers\clerk\ClerksController@saveToken')->name('save-token');
+            Route::post('/send-notification', "App\Http\Controllers\clerk\ClerksController@sendNotification")->name('send.notification');
 
         });
     });

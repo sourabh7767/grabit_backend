@@ -53,7 +53,7 @@ class AdminsController extends Controller
             'name'=> $request->name,
             'password'=>$password,
             'email'=>$request->email,
-
+            'active' => 1
         ]);
 
 

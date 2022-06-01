@@ -49,15 +49,22 @@ class LoginController extends Controller
             "first_name"=> $auth_user->first_name,
             "last_name"=>$auth_user->last_name
             ]  ;
-        $token = $user->createToken('API Token')->accessToken;
-        $user_data["token"] = $token;
+
+        $data = User::where("id",$user->id)->first();
+        $token = $data->createToken('API Token')->accessToken;
+        $data->token = $token;
 
         return Response::json([
                                 'message' => "Loggedin Successfully.",
-                                'data' => $user_data
+                                'data' => $data,
+                                "success" => true
                             ],200);
     }else{
-        return json_encode("Error");
+        return Response::json([
+                                'message' => "Incorrect Credentials.",
+                                'data' => NULL,
+                                "success" => false
+                            ],200);
         }
     }
 
@@ -128,7 +135,8 @@ class LoginController extends Controller
         $user_data["token"] = $token;
         return Response::json([
                                 'message' => "User Registered Successfully.",
-                                'data' => $user_data
+                                'data' => $user_data,
+                                "success" => true,
                             ],200);
     }
 
@@ -150,22 +158,23 @@ class LoginController extends Controller
             $user->is_verified = 1;
             $user->save();
             return Response::json([
-                                    'status' => 1,
+                                    'success' => true,
                                     'message' => "User Verified."
                                 ],200);
         }else{
             return Response::json([
-                                    'status' => 0,
+                                    'success' => false,
                                     'message' => "Wrong Otp."
                                 ],400);
         }
     }
 
     public function logout(Request $request){
+        $token = User::where('id', Auth::user()->id)->update(['device_token' => ""]);
         $user = Auth::user()->token();
         $user->revoke();
         return Response::json([
-                                'status' => 1,
+                                'success' => true,
                                 'message' => "User Loggedout Successfully."
                             ],200);
     }
@@ -189,13 +198,13 @@ class LoginController extends Controller
 
         if($user->save()){
             return Response::json([
-                                    'status' => 1,
+                                    'success' => true,
                                     'message' => "User token updated.",
                                     'data' => $user
                                 ],200);
         }else{
              return Response::json([
-                                    'status' => 0,
+                                    'success' => false,
                                     'message' => "Something went wrong."
                                 ],400);
         }
@@ -221,13 +230,13 @@ class LoginController extends Controller
 
         if($user->save()){
             return Response::json([
-                                'status' => 1,
+                                'success' => true,
                                 'message' => "User location updated.",
                                 'data' => $user
                             ],200);
         }else{
              return Response::json([
-                                    'status' => 0,
+                                    'success' => false,
                                     'message' => "Something went wrong."
                                 ],400);
         }
@@ -240,13 +249,13 @@ class LoginController extends Controller
         $user = Auth::user();
         if($user){
             return Response::json([
-                                'status' => 1,
+                                'success' => true,
                                 'message' => "User updated Successfully.",
                                 'data' => $user
                             ],200);
         }else{
              return Response::json([
-                                    'status' => 0,
+                                    'success' => false,
                                     'message' => "No User Found."
                                 ],400);
         }
@@ -267,7 +276,7 @@ class LoginController extends Controller
         $user->notification_status = $request->status;
         $user->save();
         return Response::json([
-                                'status' => 1,
+                                'success' => true,
                                 'message' => "Notification status updated."
                             ],200);
     }
@@ -301,7 +310,7 @@ class LoginController extends Controller
         $user->password = bcrypt($request->get('new_password'));
         $user->save();
         return Response::json([
-                                'status' => 1,
+                                'success' => true,
                                 'message' => "Password Changed Successfully."
                             ],200);
     }
@@ -327,13 +336,13 @@ class LoginController extends Controller
             
             $user->save();
             return Response::json([
-                                'status' => 1,
+                                'success' => true,
                                 'message' => "User updated Successfully.",
                                 'data' => $user
                             ],200);
         }else{
              return Response::json([
-                                    'status' => 0,
+                                    'success' => false,
                                     'message' => "No User Found."
                                 ],400);
         }

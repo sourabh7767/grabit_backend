@@ -41,8 +41,17 @@
                             <label class="form-label">Location</label>
                             <input type="text"  name="location"value="{{$store->location}}" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
+                        
                         <br>
                         <br>
+                        <div class="input-group input-group-outline mb-3 focused is-focused">
+                            <label class="form-label">Latitude</label>
+                            <input type="text"  name="latitude"value="{{$store->latitude}}" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                        <div class="input-group input-group-outline mb-3 focused is-focused">
+                            <label class="form-label">Longitude</label>
+                            <input type="text"  name="longitude"value="{{$store->longitude}}" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
 
                         <br>
                         <br>

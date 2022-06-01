@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth:user'], function(){
     Route::get('/get_notifications', 'App\Http\Controllers\user\HomeController@getNotifications');
     Route::get('/get_all_stores', 'App\Http\Controllers\user\HomeController@getAllStores');
     Route::get('/get_store/{id}', 'App\Http\Controllers\user\HomeController@getStore');
+    Route::get('/get_item_details/{id}', 'App\Http\Controllers\user\HomeController@getItemDetails');
+    Route::get('/get_bundel_details/{id}', 'App\Http\Controllers\user\HomeController@getBundelInfo');
+    
+    Route::get('/get_items_category/{id}', 'App\Http\Controllers\user\HomeController@getItemsCategory');
     Route::get('/home', 'App\Http\Controllers\user\HomeController@home');
     Route::post('/update_notification_status', 'App\Http\Controllers\user\LoginController@updateNotificationStatus');
     Route::post('/change_password', 'App\Http\Controllers\user\LoginController@changePassword');
@@ -40,6 +44,17 @@ Route::group(['middleware' => 'auth:user'], function(){
     Route::post('/update_token', 'App\Http\Controllers\user\LoginController@update_token');
 	Route::post('/verify-token', 'App\Http\Controllers\user\LoginController@verifyToken');
 	Route::post('/verify-otp', 'App\Http\Controllers\user\LoginController@verifyOtp');
+    Route::post('/cart', 'App\Http\Controllers\user\CartController@items');
+    Route::post('/cart/add', 'App\Http\Controllers\user\CartController@add');
+    Route::post('/add/item/quantity', 'App\Http\Controllers\user\CartController@addItemQty');
+    Route::post('/cart/remove', 'App\Http\Controllers\user\CartController@remove');
+    Route::post('/cart/update', 'App\Http\Controllers\user\CartController@update');
+    Route::get('/cart/clear', 'App\Http\Controllers\user\CartController@clear');
+    Route::post('/order/add', 'App\Http\Controllers\user\OrdersController@place_order');
+    Route::post('/order/cancel', 'App\Http\Controllers\user\OrdersController@cancel_order');
+    //Route::post('/order/status', 'App\Http\Controllers\user\OrdersController@status');
+    Route::get('/orders', 'App\Http\Controllers\user\OrdersController@orders');
+    Route::get('/orders/{order_id}', 'App\Http\Controllers\user\OrdersController@order_details');
 	Route::post('/logout', 'App\Http\Controllers\user\LoginController@logout');
 });
 
@@ -65,22 +80,6 @@ Route::post('/store/sub-categories/{id}', 'App\Http\Controllers\user\StoresContr
 Route::post('/store-details/{id}', 'App\Http\Controllers\user\StoresController@store_details');
 
 
-
-
-
-Route::post('/cart', 'App\Http\Controllers\user\CartController@items');
-Route::post('/cart/add', 'App\Http\Controllers\user\CartController@add');
-Route::post('/cart/remove', 'App\Http\Controllers\user\CartController@remove');
-Route::post('/cart/update', 'App\Http\Controllers\user\CartController@update');
-Route::post('/cart/clear', 'App\Http\Controllers\user\CartController@clear');
-
-
-Route::post('/order/add', 'App\Http\Controllers\user\OrdersController@place_order');
-Route::post('/order/cancel', 'App\Http\Controllers\user\OrdersController@cancel_order');
-Route::post('/order/status', 'App\Http\Controllers\user\OrdersController@status');
-
-Route::post('/orders', 'App\Http\Controllers\user\OrdersController@orders');
-Route::post('/orders/{order_id}', 'App\Http\Controllers\user\OrdersController@order_details');
 
 
 Route::get('/cities/{id}', function (Request $request,$id) {

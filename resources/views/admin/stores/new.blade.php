@@ -49,6 +49,15 @@
                         <br>
                         <br>
 
+                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Latitude</label>
+                            <input type="text"  name="latitude" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Longitude</label>
+                            <input type="text"  name="longitude" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                        
                         <br>
                         <br>
                     </div>
@@ -132,7 +141,7 @@
                   i++;
               }
           }
-          xhttp.open("GET", "https://apps-valley.net/public/admin/cities/"+e.value, true);
+          xhttp.open("GET", "http://grab-it.net/public/admin/cities/"+e.value, true);
           xhttp.send();
 
 

@@ -11,6 +11,6 @@ class Cart extends Model
     protected $table = 'cart';
     public $timestamps = false;
     protected $fillable = [
-        'id', 'item_id','user_id','price','quantity'
+        'id', 'total_price','store_id','user_id','address','latitude','logitude'
     ];
 }

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\clerk\Bundles;
 use App\Models\clerk\Items;
 use App\Models\clerk\SubCategories;
+use App\Models\user\User;
+use App\Models\user\Notification;
+use App\Models\admin\Stores;
 use Illuminate\Http\Request;
 
 class BundlesController extends Controller
@@ -54,6 +57,8 @@ class BundlesController extends Controller
         $validatedData = $request->validate([
             'bundle_name_ar' => 'required|min:3|max:255',
             'bundle_name' => 'required|min:3|max:255',
+            'description' => 'required|max:1000',
+            'description_ar' => 'required|max:1000',
             'sub_category_id' => 'required|max:255',
             'items' => 'required|max:255',
             'price' => 'required',
@@ -68,7 +73,7 @@ class BundlesController extends Controller
         $store_id=$request->session()->get('store_id');
         $request->img->move(public_path('images/items'), $imageName);
 
-        Bundles::create([
+        $bundel = Bundles::create([
             'bundle_name_ar'=> $request->bundle_name_ar,
             'bundle_name'=>$request->bundle_name,
             'sub_category_id'=>$request->sub_category_id,
@@ -82,7 +87,28 @@ class BundlesController extends Controller
             'img'=>$imageName
         ]);
 
+        $users = User::get();
+        $store = Stores::find($store_id);
+        $msg = $store->en_name." Added a new offer.";
+        $type = 1;
+        foreach ($users as $key => $user) {
+          if($user->device_type == 0){
+            $sendNotification = $this->sendPushNotification($user->device_token,$msg,$type,$data=array());
+          }
 
+          if($user->device_type == 1){
+            $sendNotification = $this->iospushnotification($user->device_token,$msg,$type,$data=array());
+          }
+          $notification = new Notification;
+          $notification->message = $msg;
+          $notification->user_id = $user->id;
+          $notification->type = $type;
+          $notification->image = $imageName;
+          $notification->notification_data = json_encode($bundel);
+          $notification->save();
+
+        }
+        
         $request->session()->flash('message', 'Successfully Add New Bundle !');
 
         return redirect('clerk/bundles/create');
@@ -129,6 +155,8 @@ class BundlesController extends Controller
         $validatedData = $request->validate([
             'bundle_name_ar' => 'required|min:3|max:255',
             'bundle_name' => 'required|min:3|max:255',
+            'description' => 'required|min:20|max:1000',
+            'description_ar' => 'required|min:20|max:1000',
             'sub_category_id' => 'required|max:255',
             'items' => 'required|max:255',
 
@@ -152,6 +180,8 @@ class BundlesController extends Controller
 
         $items->bundle_name_ar= $request->bundle_name_ar;
         $items->bundle_name=$request->bundle_name;
+        $items->description= $request->description;
+        $items->description_ar=$request->description_ar;
         $items->sub_category_id=$request->sub_category_id;
         $items->items=serialize($request->items);
         $items->price=$request->price;
@@ -189,20 +219,19 @@ class BundlesController extends Controller
            "registration_ids" => array(
                $token
            ),
-           // "notification" => array(
-           //     "body" => $msg,
-           //     "sendby" => "Stuckey Farm",
-           //     "establishment_detail" => "Stuckey Farm",
-           //     "type" => "Stuckey Farm",
-           //     "content-available" => 1,
-           //     "badge" => 0,
-           //     "sound" => "default",
-           // ),
+           "notification" => array(
+               "body" => $msg,
+               "sendby" => "Grabit",
+               "establishment_detail" => "Grabit",
+               "type" => "Grabit",
+               "content-available" => 1,
+               "badge" => 0,
+               "sound" => "default",
+           ),
            "data" => array(
                "body" => $msg,
-               "sendby" => "Trusty Trady",
-               "establishment_detail" => "Trusty Trady",
-               "type" => "Trusty Trady",
+               "sendby" => "Grabit",
+               "establishment_detail" => "Grabit",
                "content-available" => 1,
                "badge" => 0,
                "sound" => "default",
@@ -216,7 +245,7 @@ class BundlesController extends Controller
        $fields = json_encode($fields);
        
        $headers = array(
-           'Authorization: key=' . "AAAAwdR7J7M:APA91bGOl5onIXpP18K5IbVCV-D_WAHQVLZ9p4qqBVfTCIR1rRH13i17U9jdqsvq62NIJzPsgUzNxnNvYxtXAM3NuQOtV9cmoHm6y0e83XV-5UznUAn8Pko5lYgU_e2PQjXss3db7bZd",
+           'Authorization: key=' . "AAAA5Rj4RBU:APA91bECTiRSo3HsokP01DMjPGf7_W8WiyYwjJY70gVUsINmeSQ0aKpuq4DSAfkcRG2pfrbb2pu7uvYIsmRitfY4dDUf5n3YuK_jHnjpxOu1rr-iifuU2LwYWUCIsLAelbqo1hzHaVz0",
            'Content-Type: application/json'
        );
        $ch = curl_init();
@@ -232,12 +261,11 @@ class BundlesController extends Controller
        return $result;
    }
 
-   public function iospushnotification2($token,$msg="",$type,$data=array()) {
+   public function iospushnotification($token,$msg="",$type,$data=array()) {
        // echo "<pre>";print_r($data);die;
        $url = 'https://fcm.googleapis.com/fcm/send';
        $notification = [
            'sound' => 'Default',
-           "type"=> "test",
                "data"=>"test",
                "base_url"=>url("/"),
            "body" => $msg,
@@ -251,7 +279,7 @@ class BundlesController extends Controller
        );
        $fields = json_encode($fields);
        $headers = array(
-           'Authorization: key=' . "AAAAwdR7J7M:APA91bGOl5onIXpP18K5IbVCV-D_WAHQVLZ9p4qqBVfTCIR1rRH13i17U9jdqsvq62NIJzPsgUzNxnNvYxtXAM3NuQOtV9cmoHm6y0e83XV-5UznUAn8Pko5lYgU_e2PQjXss3db7bZd",
+           'Authorization: key=' . "AAAA5Rj4RBU:APA91bECTiRSo3HsokP01DMjPGf7_W8WiyYwjJY70gVUsINmeSQ0aKpuq4DSAfkcRG2pfrbb2pu7uvYIsmRitfY4dDUf5n3YuK_jHnjpxOu1rr-iifuU2LwYWUCIsLAelbqo1hzHaVz0",
            'Content-Type: application/json'
        );
        $ch = curl_init();

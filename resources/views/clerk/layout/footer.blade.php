@@ -39,7 +39,7 @@
 <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
 <script>
-    var ctx = document.getElementById("chart-bars").getContext("2d");
+    /*var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
         type: "bar",
@@ -117,7 +117,7 @@
                 },
             },
         },
-    });
+    });*/
 
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");

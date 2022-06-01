@@ -22,7 +22,7 @@ class DashboardController extends Controller
     public function index()
     {
 
-
+       // echo "hello";die;
 
         $data['title'] = 'Dashboard';
         $data['section'] = "Stores";
